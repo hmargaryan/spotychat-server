@@ -1,0 +1,8 @@
+module.exports = {
+  PORT: '',
+  SPOTIFY_CLIENT_ID: '',
+  SPOTIFY_CLIENT_SECRET: '',
+  SPOTIFY_REDIRECT_URL: '',
+  MONGODB_URI: '',
+  ACCESS_TOKEN_SECRET: ''
+}

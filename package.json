@@ -1,0 +1,66 @@
+{
+  "name": "spotychat-server",
+  "version": "1.0.0",
+  "description": "Application for music and communication lovers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "lint": "eslint --debug src/",
+    "lint:write": "eslint --fix --debug src/ ",
+    "prettier": "prettier --write src/**/*.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:write",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hmargaryan/spotychat-server.git"
+  },
+  "keywords": [
+    "spotify",
+    "chat"
+  ],
+  "author": "Maxim Khotsevich <xozewitc@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hmargaryan/spotychat-server/issues"
+  },
+  "homepage": "https://github.com/hmargaryan/spotychat-server#readme",
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.1.2"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.12",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-spotify": "^1.1.0",
+    "spotify-web-api-node": "^5.0.0"
+  }
+}
