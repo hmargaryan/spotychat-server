@@ -1,5 +1,6 @@
-const development = require('./development')
-const production = require('./production')
+import development from './development.js'
+import production from './production.js'
 
-module.exports =
-  process.env.NODE_ENV === 'production' ? production : development
+const config = process.env.NODE_ENV === 'production' ? production : development
+
+export default config

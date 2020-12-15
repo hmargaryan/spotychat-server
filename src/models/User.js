@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose'
 
-const schema = new Schema(
+const schema = new mongoose.Schema(
   {
     accessToken: {
       type: String,
@@ -23,18 +23,15 @@ const schema = new Schema(
       type: String,
       required: true
     },
-    profileUrl: {
+    uri: {
       type: String,
       required: true
     },
-    photo: {
+    url: {
       type: String,
       required: true
     },
-    followers: {
-      type: Number,
-      required: true
-    },
+    avatar: String,
     product: {
       type: String,
       required: true
@@ -46,4 +43,4 @@ const schema = new Schema(
   }
 )
 
-module.exports = model('User', schema)
+export default mongoose.model('User', schema)

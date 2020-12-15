@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "node": true,
     "mongo": true,
@@ -12,6 +13,11 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "semi": "off"
+    "semi": "off",
+    "no-underscore-dangle": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "dot-notation": "off"
   }
 }

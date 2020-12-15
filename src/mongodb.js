@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
-const { MONGODB_URI } = require('./config/config')
+import config from './config/config.js'
 
 const mongodbOptions = {
   useNewUrlParser: true,
@@ -9,11 +9,11 @@ const mongodbOptions = {
   useFindAndModify: false
 }
 
-module.exports.connect = async () => {
+export default async () => {
   try {
-    await mongoose.connect(MONGODB_URI, mongodbOptions)
+    await mongoose.connect(config.MONGODB_URI, mongodbOptions)
     console.log('Connected to MongoDB')
   } catch (e) {
-    console.log(e)
+    throw new Error('Error while connecting to MongoDB')
   }
 }
