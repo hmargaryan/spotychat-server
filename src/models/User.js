@@ -2,40 +2,15 @@ import mongoose from 'mongoose'
 
 const schema = new mongoose.Schema(
   {
-    accessToken: {
-      type: String,
-      required: true
-    },
-    refreshToken: {
-      type: String,
-      required: true
-    },
-    spotifyId: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    email: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    uri: {
-      type: String,
-      required: true
-    },
-    url: {
-      type: String,
-      required: true
-    },
+    accessToken: String,
+    refreshToken: String,
+    spotifyId: String,
+    email: String,
+    name: String,
+    uri: String,
+    url: String,
     avatar: String,
-    product: {
-      type: String,
-      required: true
-    }
+    product: String
   },
   {
     versionKey: false,
@@ -43,4 +18,4 @@ const schema = new mongoose.Schema(
   }
 )
 
-export default mongoose.model('User', schema)
+export const User = mongoose.model('User', schema)

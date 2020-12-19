@@ -2,18 +2,10 @@ import mongoose from 'mongoose'
 
 const schema = new mongoose.Schema(
   {
-    users: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: 'User'
-      }
-    ],
+    users: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
     messages: [
       {
-        owner: {
-          type: mongoose.Types.ObjectId,
-          ref: 'User'
-        },
+        owner: { type: mongoose.Types.ObjectId, ref: 'User' },
         text: String
       }
     ]
@@ -24,4 +16,4 @@ const schema = new mongoose.Schema(
   }
 )
 
-export default mongoose.model('Chat', schema)
+export const Chat = mongoose.model('Chat', schema)
