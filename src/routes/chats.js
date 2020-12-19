@@ -1,6 +1,5 @@
 import express from 'express'
 import { auth } from '../middleware/auth.middleware.js'
-import { sendMessage } from '../utils/helper.functions.js'
 import Chat from '../models/Chat.js'
 
 const router = express.Router()
@@ -13,7 +12,7 @@ router.get('/', auth, async (req, res) => {
     )
     return res.status(200).json(chats)
   } catch (e) {
-    return sendMessage(res, 500, 'Something went wrong, try again later', e)
+    return res.status(500).json()
   }
 })
 
