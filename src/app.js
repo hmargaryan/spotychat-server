@@ -8,7 +8,7 @@ import cors from 'cors'
 
 import { usersRoutes } from './routes/users.js'
 import { authRoutes } from './routes/auth.js'
-// import chatsRoutes from './routes/chats.js'
+import { chatsRoutes } from './routes/chats.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
@@ -23,6 +23,6 @@ app.use(cors())
 
 app.use('/auth', authRoutes)
 app.use('/users', usersRoutes)
-// app.use('/chats', chatsRoutes)
+app.use('/chats', chatsRoutes)
 
 export { app }
