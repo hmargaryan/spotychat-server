@@ -7,7 +7,7 @@ import path from 'path'
 import cors from 'cors'
 
 // import usersRoutes from './routes/users.js'
-// import authRoutes from './routes/auth.js'
+import authRoutes from './routes/auth.js'
 // import chatsRoutes from './routes/chats.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -15,14 +15,14 @@ const app = express()
 
 app.use(express.static(path.resolve(__dirname, '..', 'public')))
 app.use(express.urlencoded({ extended: true }))
-app.use(morgan('dev'))
 app.use(express.json())
 app.use(compression())
+app.use(morgan('dev'))
 app.use(helmet())
 app.use(cors())
 
+app.use('/auth', authRoutes)
 // app.use('/users', usersRoutes)
-// app.use('/auth', authRoutes)
 // app.use('/chats', chatsRoutes)
 
-export default app
+export { app }
