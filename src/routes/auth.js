@@ -1,39 +1,59 @@
+import createError from 'http-errors'
 import express from 'express'
-import { createJWT, sendMessage } from '../utils/helper.functions.js'
+import jwt from 'jsonwebtoken'
 import { spotify } from '../spotify.js'
-import { isCodeValid } from '../validators/auth.validator.js'
-import { validate } from '../middleware/validate.middleware.js'
-import User from '../models/User.js'
+import { User } from '../models/User.js'
+import { config } from '../config/config.js'
 
 const router = express.Router()
 
-router.get('/', isCodeValid, validate, async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const { code } = req.query
-    const data = await spotify.authorizationCodeGrant(code)
-    spotify.setAccessToken(data.body['access_token'])
-    const { body } = await spotify.getMe()
+    if (!code) {
+      return next(createError(400, 'Invalid code'))
+    }
+
+    const authorizationData = await spotify.authorizationCodeGrant(code)
+    const { access_token, refresh_token } = authorizationData.body
+
+    spotify.setAccessToken(access_token)
+
+    const profileData = await spotify.getMe()
+    const {
+      id,
+      email,
+      display_name,
+      uri,
+      external_urls,
+      images,
+      product
+    } = profileData.body
+
     const user = await User.findOneAndUpdate(
-      { spotifyId: body.id },
+      { spotifyId: id },
       {
         $set: {
-          accessToken: data.body['access_token'],
-          refreshToken: data.body['refresh_token'],
-          spotifyId: body.id,
-          email: body.email,
-          name: body['display_name'],
-          uri: body.uri,
-          url: body['external_urls']['spotify'],
-          avatar: body.images[0]?.url,
-          product: body.product
+          accessToken: access_token,
+          refreshToken: refresh_token,
+          spotifyId: id,
+          email,
+          name: display_name,
+          uri,
+          url: external_urls.spotify,
+          avatar: images[0]?.url,
+          product
         }
       },
       { upsert: true, new: true }
     )
-    const accessToken = createJWT(user.id)
+    console.log(user)
+    const accessToken = jwt.sign({ id: user.id }, config.ACCESS_TOKEN_SECRET, {
+      expiresIn: '7d'
+    })
     return res.status(200).json({ accessToken })
   } catch (e) {
-    return sendMessage(res, 500, 'Something went wrong, try again later', e)
+    return next(createError(500, e))
   }
 })
 
