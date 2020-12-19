@@ -6,8 +6,8 @@ import morgan from 'morgan'
 import path from 'path'
 import cors from 'cors'
 
-// import usersRoutes from './routes/users.js'
-import authRoutes from './routes/auth.js'
+import { usersRoutes } from './routes/users.js'
+import { authRoutes } from './routes/auth.js'
 // import chatsRoutes from './routes/chats.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -22,7 +22,7 @@ app.use(helmet())
 app.use(cors())
 
 app.use('/auth', authRoutes)
-// app.use('/users', usersRoutes)
+app.use('/users', usersRoutes)
 // app.use('/chats', chatsRoutes)
 
 export { app }

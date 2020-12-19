@@ -47,7 +47,7 @@ router.get('/', async (req, res, next) => {
       },
       { upsert: true, new: true }
     )
-    console.log(user)
+
     const accessToken = jwt.sign({ id: user.id }, config.ACCESS_TOKEN_SECRET, {
       expiresIn: '7d'
     })
@@ -57,4 +57,4 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-export default router
+export const authRoutes = router
