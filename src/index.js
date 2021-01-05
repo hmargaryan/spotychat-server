@@ -38,6 +38,8 @@ io.on('connection', socket => {
 mongodb
   .connect()
   .then(() => {
-    server.listen(config.PORT, () => console.log(`Running on ${config.PORT}`))
+    server.listen(process.env.PORT || config.PORT, () =>
+      console.log(`Running on ${config.PORT}`)
+    )
   })
   .catch(e => console.error(e))
