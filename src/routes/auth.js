@@ -26,7 +26,6 @@ router.get('/', async (req, res, next) => {
       display_name,
       uri,
       external_urls,
-      images,
       product
     } = profileData.body
 
@@ -41,7 +40,7 @@ router.get('/', async (req, res, next) => {
           name: display_name,
           uri,
           url: external_urls.spotify,
-          avatar: images[0]?.url,
+          avatar: undefined,
           product
         }
       },
