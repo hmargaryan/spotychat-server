@@ -41,7 +41,7 @@ router.get('/', async (req, res, next) => {
           name: display_name,
           uri,
           url: external_urls.spotify,
-          avatar: images[0].url || undefined,
+          avatar: undefined,
           product
         }
       },
