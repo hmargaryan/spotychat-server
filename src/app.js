@@ -21,6 +21,10 @@ app.use(morgan('dev'))
 app.use(helmet())
 app.use(cors())
 
+app.use('*', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+})
+
 app.use('/auth', authRoutes)
 app.use('/users', usersRoutes)
 app.use('/chats', chatsRoutes)
