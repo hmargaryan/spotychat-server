@@ -3,7 +3,6 @@ import http from 'http'
 import * as mongodb from './mongodb.js'
 import { config } from './config/config.js'
 import { app } from './app.js'
-import { Chat } from './models/Chat.js'
 
 const server = http.createServer(app)
 const io = new Server(server)

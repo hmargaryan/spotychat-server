@@ -26,7 +26,6 @@ router.get('/', async (req, res, next) => {
       display_name,
       uri,
       external_urls,
-      images,
       product
     } = profileData.body
 
